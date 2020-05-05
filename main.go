@@ -1,40 +1,22 @@
+/*
+Copyright © 2020 NAME HERE <EMAIL ADDRESS>
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
 package main
 
-import (
-	"flag"
-	"fmt"
-	"os"
-	"strings"
-)
-
-func display(items []string) {
-	for i, item := range items {
-		fmt.Printf("[%d]\t %s\n", i, item)
-	}
-}
-
-func readFromFile(filename string) []string {
-	return nil
-}
-
-func writeToFile(filename string, items []string) {
-
-}
-
-func removeItem(i int, items []string) []string {
-	return nil
-}
+import "github.com/cgos/yata/cmd"
 
 func main() {
-	cliFlags := flag.String("add", "done")
-	items := readFromFile("/tmp/yata4f.txt")
-
-	args := os.Args[1:]
-
-	if len(args) > 0{
-		if strings.Contains(args.[0], "-a"){
-			
-		}
-	}
-	display(items)
+	cmd.Execute()
 }
