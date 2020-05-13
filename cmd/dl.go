@@ -1,5 +1,5 @@
 /*
-Copyright © 2020 NAME HERE <EMAIL ADDRESS>
+Copyright © 2020 Christian Gosselin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import (
 // dlCmd represents the dl command
 var dlCmd = &cobra.Command{
 	Use:   "dl",
-	Short: "A brief description of your command",
+	Short: "Delete a List of tasks",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 

@@ -1,5 +1,5 @@
 /*
-Copyright © 2020 NAME HERE <EMAIL ADDRESS>
+Copyright © 2020 Christian Gosselin
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,7 +15,9 @@ limitations under the License.
 */
 package main
 
-import "github.com/cgos/yata/cmd"
+import (
+	"github.com/cgos/yata/cmd"
+)
 
 func main() {
 	cmd.Execute()
