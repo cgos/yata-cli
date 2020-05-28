@@ -4,6 +4,7 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/cgos/yata/internal/app"
 	"github.com/spf13/cobra"
 )
 
@@ -13,6 +14,7 @@ var llCmd = &cobra.Command{
 	Short: "List all lists of tasks",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("ll called")
+		app.Display()
 	},
 }
 

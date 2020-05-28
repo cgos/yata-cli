@@ -12,13 +12,13 @@ type Yata struct {
 	Todolists []*TodoList
 }
 
-// Read all TodoLists from a file
+// Read all TodoLists from a file. Only supports one list
 // Pointers vs Values param/return: https://stackoverflow.com/questions/23542989/pointers-vs-values-in-parameters-and-return-values/23551970#23551970
-func Read(filename string) (*TodoList, error) {
+func Read(filename string) TodoList {
 	file, err := os.Open(filename)
 	if err != nil {
-		fmt.Println("Error while opening the file")
-		return nil, err
+		fmt.Println("error opening: ", err)
+		panic("Error while opening the file")
 	}
 	defer file.Close()
 
@@ -31,7 +31,7 @@ func Read(filename string) (*TodoList, error) {
 		todos = append(todos, item)
 	}
 	todolist := TodoList{Name: "Main", Todo: todos}
-	return &todolist, nil
+	return todolist
 }
 
 // Write all TodoList to file. For the moment supports only one list
@@ -52,11 +52,10 @@ func Write(filename string, todolist []TodoList) {
 }
 
 // Display a list of todos
-func Display(todolist []TodoList) {
-	for i, tl := range todolist {
-		fmt.Printf("%d: %s \n", i, tl.Name)
-		for j, item := range tl.Todo {
-			fmt.Printf("\t%d: %s", j, item.Title)
-		}
+func Display() {
+	todolist := Read("/Users/gosselinchristian/tmp/yata.txt")
+	fmt.Printf("%s \n", todolist.Name)
+	for j, item := range todolist.Todo {
+		fmt.Printf("\t%d: %s\n", j, item.Title)
 	}
 }
