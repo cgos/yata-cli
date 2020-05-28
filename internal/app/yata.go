@@ -13,7 +13,8 @@ type Yata struct {
 }
 
 // Read all TodoLists from a file
-func Read(filename string) ([]*TodoList, error) {
+// Pointers vs Values param/return: https://stackoverflow.com/questions/23542989/pointers-vs-values-in-parameters-and-return-values/23551970#23551970
+func Read(filename string) (*TodoList, error) {
 	file, err := os.Open(filename)
 	if err != nil {
 		fmt.Println("Error while opening the file")
@@ -23,19 +24,18 @@ func Read(filename string) ([]*TodoList, error) {
 
 	scanner := bufio.NewScanner(bufio.NewReader(file))
 
-	var todoName []string
 	var todos []Todo
 	for scanner.Scan() {
-		todoName = scanner.Text()
+		todoName := scanner.Text()
 		item := Todo{Title: todoName, Done: false}
 		todos = append(todos, item)
 	}
 	todolist := TodoList{Name: "Main", Todo: todos}
-	return todolist, nil
+	return &todolist, nil
 }
 
 // Write all TodoList to file. For the moment supports only one list
-func Write(filename string, todolist []*TodoList) {
+func Write(filename string, todolist []TodoList) {
 	file, err := os.Create(filename)
 	if err != nil {
 		panic("Cannot open file")
@@ -48,5 +48,15 @@ func Write(filename string, todolist []*TodoList) {
 	tl := todolist[0]
 	for _, item := range tl.Todo {
 		fmt.Fprintf(w, "%s\n", item.Title)
+	}
+}
+
+// Display a list of todos
+func Display(todolist []TodoList) {
+	for i, tl := range todolist {
+		fmt.Printf("%d: %s \n", i, tl.Name)
+		for j, item := range tl.Todo {
+			fmt.Printf("\t%d: %s", j, item.Title)
+		}
 	}
 }
