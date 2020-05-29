@@ -16,7 +16,7 @@ limitations under the License.
 package main
 
 import (
-	"github.com/cgos/yata/cmd"
+	"github.com/cgos/yata-cli/cmd"
 )
 
 func main() {
